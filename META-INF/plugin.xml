@@ -1,0 +1,49 @@
+<idea-plugin version="2">
+    <id>com.webfox.silverstripe</id>
+    <name>Silverstripe Support</name>
+    <version>1.0</version>
+    <vendor email="matthew@webfox.co.nz" url="http://webfox.co.nz">WebFox Developments Ltd</vendor>
+
+    <description><![CDATA[
+      Adds support for the <a href="http://www.silverstripe.org/">SilverStripe</a> templating language
+    ]]></description>
+
+    <change-notes><![CDATA[
+      <strong>Whoops!</strong> The package isn't released yet!
+    ]]>
+    </change-notes>
+
+    <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="131"/>
+
+    <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <fileTypeFactory implementation="com.webfox.silverstripe.file.SilverstripeFileTypeFactory"/>
+        <lang.parserDefinition language="Silverstripe" implementationClass="com.webfox.silverstripe.SilverstripeParserDefinition"/>
+        <lang.syntaxHighlighterFactory key="Silverstripe" implementationClass="com.webfox.silverstripe.SilverstripeSyntaxHighlighterFactory"/>
+        <completion.contributor language="Silverstripe" implementationClass="com.webfox.silverstripe.SilverstripeCompletionContributor"/>
+        <colorSettingsPage implementation="com.webfox.silverstripe.SilverstripeColorSettingsPage"/>
+        <annotator language="JAVA" implementationClass="com.webfox.silverstripe.SilverstripeAnnotator"/>
+        <codeInsight.lineMarkerProvider language="JAVA" implementationClass="com.webfox.silverstripe.SilverstripeLineMarkerProvider"/>
+        <psi.referenceContributor implementation="com.webfox.silverstripe.SilverstripeReferenceContributor"/>
+    </extensions>
+
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
+
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+</idea-plugin>
