@@ -7,7 +7,7 @@ import com.webfox.silverstripe.psi.SilverstripeNamedElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class SilverstripeNamedElementImpl extends ASTWrapperPsiElement implements SilverstripeNamedElement {
+public abstract class SilverstripeNamedElementImpl extends ASTWrapperPsiElement implements SilverstripeNamedElement {
     public SilverstripeNamedElementImpl(@NotNull ASTNode node) {
         super(node);
     }

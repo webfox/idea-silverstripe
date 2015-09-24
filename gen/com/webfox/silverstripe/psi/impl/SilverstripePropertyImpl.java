@@ -9,6 +9,7 @@ import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.webfox.silverstripe.psi.SilverstripeTypes.*;
 import com.webfox.silverstripe.psi.*;
+import com.intellij.navigation.ItemPresentation;
 
 public class SilverstripePropertyImpl extends SilverstripeNamedElementImpl implements SilverstripeProperty {
 
@@ -39,6 +40,10 @@ public class SilverstripePropertyImpl extends SilverstripeNamedElementImpl imple
 
   public PsiElement getNameIdentifier() {
     return SilverstripePsiImplUtil.getNameIdentifier(this);
+  }
+
+  public ItemPresentation getPresentation() {
+    return SilverstripePsiImplUtil.getPresentation(this);
   }
 
 }

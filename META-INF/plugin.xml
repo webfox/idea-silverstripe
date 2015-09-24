@@ -3,6 +3,7 @@
     <name>Silverstripe Support</name>
     <version>1.0</version>
     <vendor email="matthew@webfox.co.nz" url="http://webfox.co.nz">WebFox Developments Ltd</vendor>
+    <category>Custom Languages</category>
 
     <description><![CDATA[
       Adds support for the <a href="http://www.silverstripe.org/">SilverStripe</a> templating language
@@ -25,13 +26,22 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <fileTypeFactory implementation="com.webfox.silverstripe.file.SilverstripeFileTypeFactory"/>
-        <lang.parserDefinition language="Silverstripe" implementationClass="com.webfox.silverstripe.SilverstripeParserDefinition"/>
-        <lang.syntaxHighlighterFactory key="Silverstripe" implementationClass="com.webfox.silverstripe.SilverstripeSyntaxHighlighterFactory"/>
-        <completion.contributor language="Silverstripe" implementationClass="com.webfox.silverstripe.SilverstripeCompletionContributor"/>
         <colorSettingsPage implementation="com.webfox.silverstripe.SilverstripeColorSettingsPage"/>
+        <codeStyleSettingsProvider implementation="com.webfox.silverstripe.formatter.SilverstripeCodeStyleSettingsProvider"/>
+        <langCodeStyleSettingsProvider implementation="com.webfox.silverstripe.formatter.SilverstripeLanguageCodeStyleSettingsProvider"/>
         <annotator language="JAVA" implementationClass="com.webfox.silverstripe.SilverstripeAnnotator"/>
         <codeInsight.lineMarkerProvider language="JAVA" implementationClass="com.webfox.silverstripe.SilverstripeLineMarkerProvider"/>
+        <completion.contributor language="Silverstripe" implementationClass="com.webfox.silverstripe.SilverstripeCompletionContributor"/>
+        <gotoSymbolContributor implementation="com.webfox.silverstripe.SilverstripeChooseByNameContributor"/>
         <psi.referenceContributor implementation="com.webfox.silverstripe.SilverstripeReferenceContributor"/>
+        <lang.parserDefinition language="Silverstripe" implementationClass="com.webfox.silverstripe.SilverstripeParserDefinition"/>
+        <lang.syntaxHighlighterFactory key="Silverstripe" implementationClass="com.webfox.silverstripe.SilverstripeSyntaxHighlighterFactory"/>
+        <lang.refactoringSupport language="Silverstripe" implementationClass="com.webfox.silverstripe.SilverstripeRefactoringSupportProvider"/>
+        <lang.findUsagesProvider language="Silverstripe" implementationClass="com.webfox.silverstripe.SilverstripeFindUsagesProvider"/>
+        <lang.foldingBuilder language="JAVA" implementationClass="com.webfox.silverstripe.SilverstripeFoldingBuilder"/>
+        <lang.psiStructureViewFactory language="Silverstripe" implementationClass="com.webfox.silverstripe.structure.SilverstripeStructureViewFactory"/>
+        <lang.formatter language="Silverstripe" implementationClass="com.webfox.silverstripe.formatter.SilverstripeFormattingModelBuilder"/>
+        <lang.commenter language="Silverstripe" implementationClass="com.webfox.silverstripe.SilverstripeCommenter"/>
     </extensions>
 
     <application-components>

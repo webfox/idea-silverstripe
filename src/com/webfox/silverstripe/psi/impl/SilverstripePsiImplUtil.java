@@ -1,17 +1,26 @@
 package com.webfox.silverstripe.psi.impl;
 
 import com.intellij.lang.ASTNode;
+import com.intellij.navigation.ItemPresentation;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiFile;
+import com.webfox.silverstripe.SilverstripeIcons;
+import org.jetbrains.annotations.Nullable;
+
+import java.lang.String;
+
 import com.webfox.silverstripe.psi.SilverstripeProperty;
 import com.webfox.silverstripe.psi.SilverstripeTypes;
 import com.webfox.silverstripe.psi.SilverstripeElementFactory;
+
+import javax.swing.*;
 
 public class SilverstripePsiImplUtil {
 
     public static String getKey(SilverstripeProperty element) {
         ASTNode keyNode = element.getNode().findChildByType(SilverstripeTypes.KEY);
         if (keyNode != null) {
-            return keyNode.getText();
+            return keyNode.getText().replaceAll("\\\\ ", " ");
         } else {
             return null;
         }
@@ -49,5 +58,27 @@ public class SilverstripePsiImplUtil {
             return null;
         }
     }
-    
+
+    public static ItemPresentation getPresentation(final SilverstripeProperty element) {
+        return new ItemPresentation() {
+            @Nullable
+            @Override
+            public String getPresentableText() {
+                return element != null ? element.getKey() : null;
+            }
+
+            @Nullable
+            @Override
+            public String getLocationString() {
+                return element.getContainingFile() != null ? element.getContainingFile().getName() : null;
+            }
+
+            @Nullable
+            @Override
+            public Icon getIcon(boolean unused) {
+                return SilverstripeIcons.FILE;
+            }
+        };
+    }
+
 }

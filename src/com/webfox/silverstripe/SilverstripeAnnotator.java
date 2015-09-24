@@ -8,6 +8,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiLiteralExpression;
+import com.webfox.silverstripe.intention.CreatePropertyQuickFix;
 import com.webfox.silverstripe.psi.SilverstripeProperty;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,16 +25,15 @@ public class SilverstripeAnnotator implements Annotator {
             String value = (String) literalExpression.getValue();
             if (value != null && value.startsWith(ANNOTATION+":")) {
                 Project project = element.getProject();
-                List<SilverstripeProperty> properties = SilverstripeUtil.findProperties(project, value.substring((ANNOTATION_LENGTH+1)));
+                String key = value.substring((ANNOTATION_LENGTH+1));
+                List<SilverstripeProperty> properties = SilverstripeUtil.findProperties(project, key);
                 if (properties.size() == 1) {
-                    TextRange range = new TextRange(element.getTextRange().getStartOffset() + (ANNOTATION_LENGTH+1),
-                            element.getTextRange().getStartOffset() + 13);
-                    Annotation annotation = holder.createInfoAnnotation(range, null);
+                    Integer TextRangeOffset = element.getTextRange().getStartOffset() + (ANNOTATION_LENGTH+1);
+                    Annotation annotation = holder.createInfoAnnotation(new TextRange(TextRangeOffset, TextRangeOffset), null);
                     annotation.setTextAttributes(DefaultLanguageHighlighterColors.LINE_COMMENT);
                 } else if (properties.size() == 0) {
-                    TextRange range = new TextRange(element.getTextRange().getStartOffset() + (ANNOTATION_LENGTH+2),
-                            element.getTextRange().getEndOffset());
-                    holder.createErrorAnnotation(range, "Unresolved property");
+                    TextRange range = new TextRange(element.getTextRange().getStartOffset() + (ANNOTATION_LENGTH+2), element.getTextRange().getEndOffset());
+                    holder.createErrorAnnotation(range, "Unresolved property").registerFix(new CreatePropertyQuickFix(key));
                 }
             }
         }

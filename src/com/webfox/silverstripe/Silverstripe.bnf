@@ -1,5 +1,5 @@
 {
-  parserClass="com.webfox.silverstripe.parser.SilverstripeParser"
+  parserClass="com.webfox.silverstripe.parser.SimpleParser"
 
   extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
@@ -13,7 +13,6 @@
   tokenTypeClass="com.webfox.silverstripe.psi.SilverstripeTokenType"
 
   psiImplUtilClass="com.webfox.silverstripe.psi.impl.SilverstripePsiImplUtil"
-
 }
 
 silverstripeFile ::= item_*
@@ -21,4 +20,4 @@ silverstripeFile ::= item_*
 private item_ ::= (property|COMMENT|CRLF)
 
 property ::= (KEY? SEPARATOR VALUE?) | KEY {mixin="com.webfox.silverstripe.psi.impl.SilverstripeNamedElementImpl"
-  implements="com.webfox.silverstripe.psi.SilverstripeNamedElement" methods=[getKey getValue getName setName getNameIdentifier]}
+  implements="com.webfox.silverstripe.psi.SilverstripeNamedElement" methods=[getKey getValue getName setName getNameIdentifier getPresentation]}
